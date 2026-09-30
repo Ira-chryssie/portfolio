@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chryssie Irishura Funny — Embedded Systems &amp; AI</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #13131f;
+      --bg-card-hover: #1a1a2e;
+      --text: #e8e8f0;
+      --text-muted: #8888a0;
+      --accent: #00c8ff;
+      --accent-2: #7c3aed;
+      --accent-3: #10b981;
+      --border: #1e1e32;
+      --radius: 12px;
+      --max-w: 1100px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    nav .logo {
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    nav .logo span { color: var(--text); }
+    nav ul { display: flex; gap: 24px; list-style: none; }
+    nav ul a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--accent); }
+    nav .social-nav { display: flex; gap: 12px; }
+    nav .social-nav a {
+      color: var(--text-muted); font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    nav .social-nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 40%, rgba(0,200,255,0.08), transparent),
+        radial-gradient(ellipse 50% 40% at 70% 60%, rgba(124,58,237,0.06), transparent);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero .subtitle {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: #00a8d4; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 48px;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat .num {
+      font-size: 2rem; font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -1px;
+    }
+    .stat .label {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 80px 24px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section-header {
+      margin-bottom: 48px;
+    }
+    .section-header h2 {
+      font-size: 2rem; font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    .section-header .accent-line {
+      width: 48px; height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-top: 12px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+    .about-text p strong { color: var(--text); }
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px;
+    }
+    .profile-card .avatar-placeholder {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+    .profile-card .name { font-weight: 700; font-size: 1.1rem; }
+    .profile-card .role { color: var(--text-muted); font-size: 0.9rem; }
+    .profile-card .location {
+      color: var(--text-muted); font-size: 0.8rem;
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 4px;
+    }
+    .profile-card .contact-links {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      margin-top: 8px;
+    }
+    .contact-links a {
+      color: var(--accent); text-decoration: none; font-size: 0.85rem;
+      transition: opacity 0.2s;
+    }
+    .contact-links a:hover { opacity: 0.7; }
+    .languages-badge {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .lang-badge {
+      padding: 4px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+    .skill-tag {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .skill-tag .skill-icon {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .achievement-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .achievement-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+    .achievement-card .award-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .achievement-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .achievement-card .event {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .achievement-card .year {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .achievement-card .desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .achievement-card .medal {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 1.8rem;
+      opacity: 0.3;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+    .project-card .project-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .project-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .project-card .project-tech {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .project-card .tech-tag {
+      padding: 3px 10px;
+      background: rgba(0,200,255,0.1);
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .project-card .project-links {
+      display: flex; gap: 12px;
+    }
+    .project-card .project-links a {
+      color: var(--accent); text-decoration: none; font-size: 0.85rem;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .certifications-list {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cert-item {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      transition: all 0.2s;
+    }
+    .cert-item:hover {
+      border-color: var(--accent);
+    }
+    .cert-item .cert-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .cert-item .cert-info { flex-grow: 1; }
+    .cert-item .cert-name {
+      font-weight: 600; font-size: 0.95rem;
+    }
+    .cert-item .cert-org {
+      color: var(--text-muted); font-size: 0.85rem;
+    }
+    .cert-item .cert-year {
+      color: var(--accent); font-size: 0.8rem; font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      text-align: center;
+    }
+    .contact-section .contact-cta {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .contact-links-big {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .contact-links-big a {
+      padding: 14px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .contact-links-big a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .contact-email-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .contact-email-btn:hover {
+      background: #00a8d4;
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer .footer-links {
+      display: flex; gap: 20px; justify-content: center;
+      margin-bottom: 12px;
+    }
+    footer .footer-links a {
+      color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer .footer-links a:hover { color: var(--accent); }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      nav ul { display: none; }
+      nav .social-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">CF<span>.</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Awards</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="social-nav">
+      <a href="https://github.com/ira-chryssie" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/chryssie-irishura" target="_blank">LinkedIn</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-badge fade-in">
+      🏆 National AI &amp; Cybersecurity Award 2026
+    </div>
+    <h1 class="fade-in">
+      Hi, I'm<br>
+      <span class="highlight">Chryssie Irishura</span><br>
+      Funny
+    </h1>
+    <p class="subtitle fade-in">
+      Embedded Systems student &amp; applied AI engineer from Bujumbura, Burundi.
+      Building intelligent systems at the intersection of machine learning, cybersecurity, and fullstack web.
+    </p>
+    <div class="hero-cta fade-in">
+      <a href="#projects" class="btn btn-primary">View my work ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+    <div class="hero-stats fade-in">
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">International Awards</div>
+      </div>
+      <div class="stat">
+        <div class="num">15+</div>
+        <div class="label">ML &amp; Dev Skills</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="label">Languages</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header fade-in">
+      <h2>About Me</h2>
+      <p>Passion-driven engineer building real solutions with AI and embedded systems.</p>
+      <div class="accent-line"></div>
+    </div>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>
+          I'm an <strong>Embedded Systems student</strong> at the University of Burundi,
+          specializing in <strong>Applied AI &amp; Cybersecurity</strong>.
+          I design and deploy production-grade fullstack web applications with Django,
+          and build end-to-end machine learning pipelines across tabular, image, and audio data using
+          scikit-learn and PyTorch.
+        </p>
+        <p>
+          In 2026, I was <strong>selected among Burundi's national representatives</strong>
+          to two international olympiads — the International Olympiad in Artificial Intelligence (IOAI)
+          in Astana, Kazakhstan, and the International Cybersecurity Olympiad in AI (ICOA) in Australia —
+          earning Honourable Mentions in both.
+        </p>
+        <p>
+          I also won the <strong>National Award</strong> in Burundi's Cybersecurity &amp; AI Competition
+          by developing a technical solution evaluated by a national jury, ranking among the top entrants nationwide.
+        </p>
+        <p>
+          When I'm not coding, I'm contributing to the AI community through Deep Learning Indaba
+          and IndabaX Burundi, and exploring the frontiers of embedded AI.
+        </p>
+      </div>
+      <div class="profile-card">
+        <div class="avatar-placeholder">CIF</div>
+        <div class="name">Chryssie Irishura Funny</div>
+        <div class="role">Embedded Systems · Applied AI · Cybersecurity</div>
+        <div class="location">
+          📍 Carama, Bujumbura, Burundi
+        </div>
+        <div class="contact-links">
+          <a href="mailto:funnychryssieirishura@gmail.com">📧 funnychryssieirishura@gmail.com</a>
+          <a href="tel:+25765048840">📱 +257 65 04 88 40</a>
+        </div>
+        <div class="languages-badge">
+          <span class="lang-badge">🇧🇮 Kirundi — Native</span>
+          <span class="lang-badge">🇫🇷 French — Fluent</span>
+          <span class="lang-badge">🇬🇧 English — Good</span>
+          <span class="lang-badge">🗣️ Swahili — Good</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header fade-in">
+      <h2>Skills &amp; Technologies</h2>
+      <p>Core competencies I work with daily — from ML pipelines to production web apps.</p>
+      <div class="accent-line"></div>
+    </div>
+    <div class="skills-grid fade-in">
+      <div class="skill-tag"><span class="skill-icon">🐍</span>Python</div>
+      <div class="skill-tag"><span class="skill-icon">🧠</span>Machine Learning</div>
+      <div class="skill-tag"><span class="skill-icon">🌊</span>Deep Learning</div>
+      <div class="skill-tag"><span class="skill-icon">📊</span>scikit-learn</div>
+      <div class="skill-tag"><span class="skill-icon">🔥</span>PyTorch</div>
+      <div class="skill-tag"><span class="skill-icon">👁️</span>Computer Vision</div>
+      <div class="skill-tag"><span class="skill-icon">🎵</span>Audio Processing</div>
+      <div class="skill-tag"><span class="skill-icon">🧪</span>Model Training &amp; Eval</div>
+      <div class="skill-tag"><span class="skill-icon">🌐</span>Django</div>
+      <div class="skill-tag"><span class="skill-icon">🔧</span>Fullstack Dev</div>
+      <div class="skill-tag"><span class="skill-icon">⚡</span>Embedded Systems</div>
+      <div class="skill-tag"><span class="skill-icon">🔐</span>Applied AI Cybersecurity</div>
+      <div class="skill-tag"><span class="skill-icon">📈</span>Data Analysis</div>
+      <div class="skill-tag"><span class="skill-icon">📦</span>Git / GitHub</div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="section-header fade-in">
+      <h2>Awards &amp; Recognition</h2>
+      <p>Selected among national delegates. Competing on the world stage.</p>
+      <div class="accent-line"></div>
+    </div>
+    <div class="achievements-grid fade-in">
+      <div class="achievement-card">
+        <div class="award-icon">🥈</div>
+        <div class="medal">🏅</div>
+        <h3>Honourable Mention</h3>
+        <div class="event">International Olympiad in Artificial Intelligence (IOAI)</div>
+        <div class="year">Astana, Kazakhstan · 2026</div>
+        <div class="desc">
+          Selected among Burundi's national delegates to the world's first IOAI for pre-university students.
+          Earned an Honourable Mention by solving applied ML problems across tabular, vision, and audio tasks
+          against international competition.
+        </div>
+      </div>
+      <div class="achievement-card">
+        <div class="award-icon">🥈</div>
+        <div class="medal">🏅</div>
+        <h3>Honourable Mention</h3>
+        <div class="event">International Cybersecurity Olympiad in AI (ICOA)</div>
+        <div class="year">Australia · 2026</div>
+        <div class="desc">
+          Represented Burundi as one of the few students selected nationally.
+          Earned an Honourable Mention by solving applied AI cybersecurity challenges
+          on the international stage.
+        </div>
+      </div>
+      <div class="achievement-card">
+        <div class="award-icon">🏆</div>
+        <div class="medal">🥇</div>
+        <h3>National Award</h3>
+        <div class="event">Cybersecurity &amp; AI Competition — Burundi</div>
+        <div class="year">Burundi · 2026</div>
+        <div class="desc">
+          Won the National Award by developing a technical solution evaluated by a national jury,
+          ranking among the top entrants nationwide.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header fade-in">
+      <h2>Projects</h2>
+      <p>Production systems and AI tools I'm building.</p>
+      <div class="accent-line"></div>
+    </div>
+    <div class="projects-grid fade-in">
+      <div class="project-card">
+        <div class="project-icon">🌐</div>
+        <h3>Personal Web Application</h3>
+        <div class="project-tech">
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Fullstack</span>
+          <span class="tech-tag">Deployment</span>
+        </div>
+        <p>
+          Deployed and maintained a production fullstack web application built with Django,
+          kept continuously online. A showcase of end-to-end web engineering skills.
+        </p>
+        <div class="project-links">
+          <a href="https://irishura.amidev.bi" target="_blank">🔗 irishura.amidev.bi</a>
+          <a href="https://github.com/ira-chryssie" target="_blank">🐙 GitHub</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <h3>Restaurant Chatbot (In Progress)</h3>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">AI</span>
+          <span class="tech-tag">NLP</span>
+        </div>
+        <p>
+          Building an AI-powered chatbot in Python to automate restaurant customer service,
+          targeting reduced order response time. Applying NLP and conversational AI
+          to a real-world business use case.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/ira-chryssie" target="_blank">🐙 GitHub (WIP)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-header fade-in">
+      <h2>Certifications &amp; Training</h2>
+      <p>Continuous learning across AI, cybersecurity, and fullstack development.</p>
+      <div class="accent-line"></div>
+    </div>
+    <div class="certifications-list fade-in">
+      <div class="cert-item">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-info">
+          <div class="cert-name">Certificate of Recognition — Fullstack Development &amp; Python Programming</div>
+          <div class="cert-org">Kivuko Tech &amp; U.S. Embassy</div>
+        </div>
+        <div class="cert-year">2026</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🚀</div>
+        <div class="cert-info">
+          <div class="cert-name">Menya Accelerator</div>
+          <div class="cert-org">Capacity-building program</div>
+        </div>
+        <div class="cert-year">May 2026</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🧠</div>
+        <div class="cert-info">
+          <div class="cert-name">Deep Learning Indaba — Certificate of Participation</div>
+          <div class="cert-org">Pan-African AI community</div>
+        </div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🧠</div>
+        <div class="cert-info">
+          <div class="cert-name">Deep Learning IndabaX Burundi — Certificate of Participation</div>
+          <div class="cert-org">Burundi AI chapter</div>
+        </div>
+        <div class="cert-year">2025</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="section-header fade-in" style="text-align:center;">
+      <h2>Let's Connect</h2>
+      <p>Whether it's a collaboration, an opportunity, or just a chat about AI.</p>
+      <div class="accent-line" style="margin:12px auto 0;"></div>
+    </div>
+    <p class="contact-cta fade-in">
+      I'm always open to interesting conversations and new opportunities.
+    </p>
+    <div class="contact-links-big fade-in">
+      <a href="mailto:funnychryssieirishura@gmail.com">
+        ✉️ funnychryssieirishura@gmail.com
+      </a>
+      <a href="https://github.com/ira-chryssie" target="_blank">
+        🐙 github.com/ira-chryssie
+      </a>
+      <a href="https://linkedin.com/in/chryssie-irishura" target="_blank">
+        💼 LinkedIn
+      </a>
+      <a href="https://irishura.amidev.bi" target="_blank">
+        🌐 Portfolio
+      </a>
+    </div>
+    <a href="mailto:funnychryssieirishura@gmail.com" class="contact-email-btn fade-in">
+      📩 Contact me directly
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/ira-chryssie" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/chryssie-irishura" target="_blank">LinkedIn</a>
+      <a href="https://irishura.amidev.bi" target="_blank">Portfolio</a>
+      <a href="mailto:funnychryssieirishura@gmail.com">Email</a>
+    </div>
+    <p>© 2026 Chryssie Irishura Funny — Built with purpose.</p>
+  </footer>
+
+  <script>
+    // Scroll-triggered fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
